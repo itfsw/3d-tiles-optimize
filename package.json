@@ -22,9 +22,11 @@
     "@gltf-transform/core": "^4.3.0",
     "@gltf-transform/extensions": "^4.3.0",
     "@gltf-transform/functions": "^4.3.0",
-    "3d-tiles-tools": "^0.5.1"
+    "3d-tiles-tools": "^0.5.1",
+    "draco3dgltf": "^1.5.7"
   },
   "devDependencies": {
+    "@types/draco3dgltf": "^1.4.3",
     "@types/node": "^25.2.1",
     "tsdown": "^0.20.3",
     "typescript": "^5.9.3"
