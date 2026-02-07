@@ -1,13 +1,32 @@
-import {Logger} from "../program.js";
+import {type Pipeline, type TilesetStage} from '3d-tiles-tools'
+import {ExPipelineExecutor} from "./pipeline/ExPipelineExecutor.js";
 
 /**
  * 优化
  * @param input 输入路径
  * @param output 输出路径
- * @param logger 日志
  */
-export function optimize(input: string, output: string, logger: Logger): Promise<void> {
-    return new Promise(resolve => {
-        logger.warn('sssssssssssssssssssss')
-    });
+export function optimize(input: string, output: string): Promise<void> {
+    // 创建流水线
+    const tilesetStages: TilesetStage[] = [];
+    const pipeline: Pipeline = {
+        input: input,
+        output: output,
+        tilesetStages: tilesetStages
+    }
+    // 添加流水线步骤
+    // 1. upgrade
+    tilesetStages.push({
+        name: "upgrade",
+        description: "Upgrade the input tileset to the latest version"
+    })
+    // 2. combine
+    tilesetStages.push({
+        name: "combine",
+        description: "Combine all external tilesets into one"
+    })
+    // 3. 优化
+
+    // 执行流水线
+    return ExPipelineExecutor.executePipeline(pipeline, true)
 }

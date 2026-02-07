@@ -14,13 +14,15 @@
   },
   "scripts": {
     "build": "tsdown src/cli.ts",
-    "build:watch": "tsdown src/cli.ts --watch"
+    "build:watch": "tsdown src/cli.ts --watch",
+    "test": "3d-tiles-optimize optimize ./data/input ./data/output --logLevel trace"
   },
   "dependencies": {
     "@donmccurdy/caporal": "^0.0.10",
     "@gltf-transform/core": "^4.3.0",
     "@gltf-transform/extensions": "^4.3.0",
-    "@gltf-transform/functions": "^4.3.0"
+    "@gltf-transform/functions": "^4.3.0",
+    "3d-tiles-tools": "^0.5.1"
   },
   "devDependencies": {
     "@types/node": "^25.2.1",
