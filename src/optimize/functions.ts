@@ -1,5 +1,5 @@
 import {type Pipeline, type TilesetStage} from '3d-tiles-tools'
-import {ExPipelineExecutor} from "./pipeline/ExPipelineExecutor.js";
+import {ExPipelineExecutor} from "../pipeline/ExPipelineExecutor.js";
 
 /**
  * 优化
@@ -26,6 +26,21 @@ export function optimize(input: string, output: string): Promise<void> {
         description: "Combine all external tilesets into one"
     })
     // 3. 优化
+    tilesetStages.push({
+        name: "_optimizeGlb",
+        description: "Optimize GLB",
+        contentStages: [
+            {
+                name: "optimizeGlb",
+                description: "Apply glTF-Transform to each GLB content, with the given options",
+                options: {
+                    "dracoOptions": {
+                        "compressionLevel": 10
+                    }
+                }
+            }
+        ]
+    })
 
     // 执行流水线
     return ExPipelineExecutor.executePipeline(pipeline, true)

@@ -1,5 +1,5 @@
 import {program, Validator} from './program.js';
-import {optimize} from "./optimize/index.js";
+import {optimize} from "./index.js";
 import {Loggers} from "3d-tiles-tools";
 
 const logger = Loggers.get("CLI");
