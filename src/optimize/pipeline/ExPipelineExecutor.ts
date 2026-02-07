@@ -1,13 +1,13 @@
 import fs from "fs";
 import os from "os";
 import path from "path";
-import {Loggers, type Pipeline, TilesetStageExecutor} from "3d-tiles-tools";
+import {Loggers, type Pipeline} from "3d-tiles-tools";
+import {ExTilesetStageExecutor} from "./ExTilesetStageExecutor.js";
 
 const logger = Loggers.get("pipeline");
 
 /**
- * 拓展流水线执行器
- * @see PipelineExecutor
+ * Copy PipelineExecutor
  */
 export class ExPipelineExecutor {
     /**
@@ -80,7 +80,7 @@ export class ExPipelineExecutor {
                 currentOverwrite = true;
             }
 
-            await TilesetStageExecutor.executeTilesetStage(
+            await ExTilesetStageExecutor.executeTilesetStage(
                 tilesetStage,
                 currentInput,
                 currentOutput,
