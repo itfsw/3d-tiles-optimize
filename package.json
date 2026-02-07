@@ -1,0 +1,38 @@
+{
+  "name": "3d-tiles-optimize",
+  "version": "1.0.0",
+  "description": "3d tiles 压缩优化器",
+  "private": true,
+  "type": "module",
+  "types": "./dist/cli.d.mts",
+  "exports": {
+    "types": "./dist/cli.d.mts",
+    "default": "./dist/cli.mjs"
+  },
+  "bin": {
+    "3d-tiles-optimize": "./bin/cli.js"
+  },
+  "scripts": {
+    "build": "tsdown src/cli.ts",
+    "build:watch": "tsdown src/cli.ts --watch"
+  },
+  "dependencies": {
+    "@donmccurdy/caporal": "^0.0.10",
+    "@gltf-transform/core": "^4.3.0",
+    "@gltf-transform/extensions": "^4.3.0",
+    "@gltf-transform/functions": "^4.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^25.2.1",
+    "tsdown": "^0.20.3",
+    "typescript": "^5.9.3"
+  },
+  "files": [
+    "bin/",
+    "dist/",
+    "src/",
+    "README.md",
+    "LICENSE.md",
+    "package-lock.json"
+  ]
+}
