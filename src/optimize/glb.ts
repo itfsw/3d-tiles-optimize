@@ -5,7 +5,17 @@ import type {OptimizeOptions} from "../types.js";
 import {ALL_EXTENSIONS} from "@gltf-transform/extensions";
 import {NodeIO, type Transform} from "@gltf-transform/core";
 import {MeshoptDecoder, MeshoptEncoder} from 'meshoptimizer';
-import {dedup, draco, instance, meshopt, palette, prune, resample, textureCompress} from '@gltf-transform/functions';
+import {
+    dedup,
+    draco,
+    flatten,
+    instance,
+    meshopt,
+    palette,
+    prune,
+    resample,
+    textureCompress
+} from '@gltf-transform/functions';
 
 const logger = Loggers.get('optimizeGlb')
 
@@ -47,6 +57,11 @@ export async function optimizeGlb(glbBuffer: Buffer, opts: OptimizeOptions): Pro
                         min: opts.paletteMin,
                         keepAttributes: !opts.prune || !opts.pruneAttributes,
                     }))
+                }
+
+                if (opts.flatten) {
+                    logger.info('Flatten scene graph.')
+                    transforms.push(flatten())
                 }
 
                 if (opts.resample) {

@@ -13,6 +13,7 @@ export interface OptimizeOptions extends Record<string, any> {
     instance: boolean;
     instanceMin: number;
     dedup: boolean;
+    flatten: boolean;
     draco: boolean;
     meshopt: boolean;
     meshoptLevel: 'medium' | 'high';

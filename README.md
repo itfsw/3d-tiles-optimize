@@ -38,6 +38,7 @@ Using 3d-tiles-optimize as a command-line tool:
 | 🌍 SCENE                         |
 | `--instance`                     | Create GPU instances from shared mesh references.                                                                                                                                  | true    |
 | `--instance.min`                 | Number of instances required for instancing.                                                                                                                                       | 5       |
+| `--flatten`                      | Flatten scene graph.                                                                                                                                                               | true    |
 | 🫖  GEOMETRY                     |
 | `--draco`                        | Compress geometry with Draco.                                                                                                                                                      | true    |
 | `--meshopt`                      | Compress geometry and animation with Meshopt.                                                                                                                                      | false   |

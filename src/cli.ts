@@ -50,6 +50,10 @@ program.command('optimize', 'Optimize 3d-tiles by 3d-tiles-tools and glTF-Transf
         validator: Validator.NUMBER,
         default: PALETTE_DEFAULTS.min,
     })
+    .option('--flatten <bool>', 'Flatten scene graph.', {
+        validator: Validator.BOOLEAN,
+        default: true,
+    })
     .option('--draco <bool>', 'Enable Compress geometry with Draco.', {
         validator: Validator.BOOLEAN,
         default: true,
