@@ -26,6 +26,7 @@ Using 3d-tiles-optimize as a command-line tool:
 | `--logLevel`        | The log level. Valid values are trace, debug, info, warn, error, fatal, and silent | warn    |
 | `--combine`         | Combines all external tilesets into a single tileset.                              | false   |
 | `--resample.enable` | Enable Losslessly resample animation frames.                                       | true    |
-| `--prune.enable`    | Remove unused nodes, textures, or other data.                                      | true    |
+| `--prune.enable`    | Enable Remove unused nodes, textures, or other data.                               | true    |
 | `--dedup.enable`    | Enable Remove duplicate vertex or texture data, if any.                            | true    |
+| `--draco.enable`    | Enable Compress mesh geometry with Draco.                                          | true    |
 

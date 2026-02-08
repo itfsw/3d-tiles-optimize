@@ -7,4 +7,5 @@ export interface OptimizeOptions extends Record<string, any> {
     resampleEnable: boolean
     pruneEnable: boolean
     dedupEnable: boolean
+    dracoEnable: boolean
 }

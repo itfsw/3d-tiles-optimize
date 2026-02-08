@@ -39,7 +39,9 @@ export async function optimizeGlb(glbBuffer: Buffer, options: OptimizeOptions): 
                     transforms.push(dedup())
                 }
                 // Compress mesh geometry with Draco.
-                transforms.push(draco())
+                if (options.dracoEnable) {
+                    transforms.push(draco())
+                }
                 // Convert textures to WebP (Requires glTF Transform v3 and Node.js).
                 transforms.push(textureCompress({
                     encoder: sharp,

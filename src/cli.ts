@@ -29,6 +29,10 @@ program.command('optimize', 'Optimize 3d-tiles by 3d-tiles-tools and glTF-Transf
         validator: Validator.BOOLEAN,
         default: true,
     })
+    .option('--draco.enable <draco.enable>', 'Enable Compress mesh geometry with Draco.', {
+        validator: Validator.BOOLEAN,
+        default: true,
+    })
     // action
     .action(async ({args, options}) => {
         const opts = options as OptimizeOptions
