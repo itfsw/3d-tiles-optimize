@@ -110,6 +110,10 @@ program.command('optimize', 'Optimize 3d-tiles by 3d-tiles-tools and glTF-Transf
         validator: Validator.BOOLEAN,
         default: true,
     })
+    .option('--sparse <bool>', 'Reduces storage for zero-filled arrays. If disabled, existing accessors (sparse or not) are left unchanged.', {
+        validator: Validator.BOOLEAN,
+        default: true,
+    })
     .option('--textureCompress.resize <resize>', 'Resizes textures to given maximum [width,height] | false, preserving aspect ratio. Presets "nearest-pot", "ceil-pot", and "floor-pot" resize textures to power-of-two dimensions.', {
         validator: (value) => {
             return new Promise((resolve, reject) => {

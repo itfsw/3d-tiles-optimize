@@ -27,6 +27,7 @@ export interface OptimizeOptions extends Record<string, any> {
     simplifyLockBorder: boolean;
     palette: boolean;
     paletteMin: number;
+    sparse: boolean;
     textureCompress: boolean;
     textureCompressTargetFormat: 'jpeg' | 'png' | 'webp' | 'avif';
     textureCompressResize: TextureCompressResize | false;

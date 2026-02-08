@@ -10,7 +10,7 @@ import {
     palette,
     prune,
     resample,
-    simplify,
+    simplify, sparse,
     textureCompress,
     weld
 } from '@gltf-transform/functions';
@@ -112,6 +112,9 @@ export async function optimizeGlb(glbBuffer: Buffer, opts: OptimizeOptions): Pro
                     }))
                 }
 
+                if (opts.sparse) {
+                    transforms.push(sparse());
+                }
 
                 if (opts.textureCompress) {
                     logger.info('GLB Textures Compress.')
