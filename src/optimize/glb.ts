@@ -44,10 +44,11 @@ export async function optimizeGlb(glbBuffer: Buffer, options: OptimizeOptions): 
                 }
                 // Textures Compress.
                 if (options.textureCompress) {
+                    const resize = options.textureCompressResize === false ? undefined : options.textureCompressResize;
                     transforms.push(textureCompress({
                         encoder: sharp,
                         targetFormat: options.textureCompressTargetFormat,
-                        resize: [1024, 2024],
+                        resize: resize,
                     }))
                 }
 

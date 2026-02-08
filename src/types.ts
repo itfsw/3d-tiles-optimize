@@ -1,3 +1,5 @@
+export type TextureCompressResize = [number, number] | 'nearest-pot' | 'ceil-pot' | 'floor-pot'
+
 /**
  * OptimizeOptions
  */
@@ -9,5 +11,6 @@ export interface OptimizeOptions extends Record<string, any> {
     dedupEnable: boolean
     dracoEnable: boolean
     textureCompressEnable: boolean
-    textureCompressTargetFormat?: 'jpeg' | 'png' | 'webp' | 'avif'
+    textureCompressTargetFormat: 'jpeg' | 'png' | 'webp' | 'avif'
+    textureCompressResize: TextureCompressResize | false
 }

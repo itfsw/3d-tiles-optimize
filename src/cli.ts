@@ -1,7 +1,7 @@
-import {program, Validator} from './program.js';
-import {optimize} from "./optimize/functions.js";
 import {Loggers} from "3d-tiles-tools";
+import {program, Validator} from './program.js';
 import type {OptimizeOptions} from "./types.js";
+import {optimize} from "./optimize/functions.js";
 
 // OPTIMIZE
 program.command('optimize', 'Optimize 3d-tiles by 3d-tiles-tools and glTF-Transform')
@@ -40,6 +40,18 @@ program.command('optimize', 'Optimize 3d-tiles by 3d-tiles-tools and glTF-Transf
     .option('--textureCompress.targetFormat <textureCompress.targetFormat>', 'Target image format. If specified, included textures in other formats will be converted.', {
         validator: ['jpeg', 'png', 'webp', 'avif'],
         default: 'webp'
+    })
+    .option('--textureCompress.resize <textureCompress.resize>', 'Resizes textures to given maximum width/height | false, preserving aspect ratio. Presets "nearest-pot", "ceil-pot", and "floor-pot" resize textures to power-of-two dimensions.', {
+        validator: (value) => {
+            return new Promise((resolve, reject) => {
+                if (value === false || (value instanceof Array && value.length == 2) || ['nearest-pot', 'ceil-pot', 'floor-pot'].includes(value as string)) {
+                    resolve(value)
+                } else {
+                    reject(new Error(`Unexpected resize type!`))
+                }
+            })
+        },
+        default: false
     })
     // action
     .action(async ({args, options}) => {
