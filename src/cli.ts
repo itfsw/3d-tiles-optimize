@@ -18,7 +18,7 @@ program.command('optimize', 'Optimize 3d-tiles by 3d-tiles-tools and glTF-Transf
         validator: Validator.BOOLEAN,
         default: false,
     })
-    .option('--dedup <bool>', 'Enable Deduplicate accessors and textures.', {
+    .option('--dedup <bool>', 'Deduplicate accessors and textures.', {
         validator: Validator.BOOLEAN,
         default: true,
     })

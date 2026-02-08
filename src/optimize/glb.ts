@@ -30,7 +30,7 @@ export async function optimizeGlb(glbBuffer: Buffer, opts: OptimizeOptions): Pro
                 const transforms: Transform[] = []
 
                 if (opts.dedup) {
-                    logger.info('GLB Remove duplicate vertex or texture data, if any.')
+                    logger.info('Deduplicate accessors and textures.')
                     transforms.push(dedup())
                 }
 
