@@ -1,10 +1,11 @@
 import sharp from "sharp";
 import draco3d from 'draco3dgltf';
+import {Loggers} from "3d-tiles-tools";
+import {MeshoptDecoder, MeshoptEncoder} from 'meshoptimizer';
 import type {OptimizeOptions} from "../types.js";
 import {ALL_EXTENSIONS} from "@gltf-transform/extensions";
 import {NodeIO, type Transform} from "@gltf-transform/core";
 import {dedup, draco, prune, resample, textureCompress} from '@gltf-transform/functions';
-import {Loggers} from "3d-tiles-tools";
 
 const logger = Loggers.get('optimizeGlb')
 
@@ -81,5 +82,7 @@ async function createNodeIO() {
         .registerDependencies({
             'draco3d.decoder': await draco3d.createDecoderModule(),
             'draco3d.encoder': await draco3d.createEncoderModule(),
+            'meshopt.decoder': MeshoptDecoder,
+            'meshopt.encoder': MeshoptEncoder
         });
 }
