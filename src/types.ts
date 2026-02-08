@@ -8,6 +8,8 @@ export interface OptimizeOptions extends Record<string, any> {
     combine: boolean;
     resample: boolean;
     prune: boolean;
+    pruneAttributes: boolean;
+    pruneSolidTextures: boolean;
     instance: boolean;
     instanceMin: number;
     dedup: boolean;

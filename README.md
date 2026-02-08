@@ -32,7 +32,9 @@ Using 3d-tiles-optimize as a command-line tool:
 | `--combine`                      | Combines all external tilesets into a single tileset.                                                                                                                              | false   |
 | 📦 PACKAGE                       |
 | `--dedup`                        | Deduplicate accessors and textures.                                                                                                                                                | true    |
-| `--prune`                        | Remove unreferenced properties from the file.                                                                                                                                      | true    |
+| `--prune`                        | Removes properties from the file if they are not referenced by a Scene.                                                                                                            | true    |
+| `--prune.attributes`             | Whether to prune unused vertex attributes.                                                                                                                                         | true    |
+| `--prune.solidTextures`          | Whether to prune solid (single-color) textures, converting them to material factors.                                                                                               | true    |
 | 🌍 SCENE                         |
 | `--instance`                     | Create GPU instances from shared mesh references.                                                                                                                                  | true    |
 | `--instance.min`                 | Number of instances required for instancing.                                                                                                                                       | 5       |

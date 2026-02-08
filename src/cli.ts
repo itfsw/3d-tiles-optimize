@@ -22,7 +22,15 @@ program.command('optimize', 'Optimize 3d-tiles by 3d-tiles-tools and glTF-Transf
         validator: Validator.BOOLEAN,
         default: true,
     })
-    .option('--prune <bool>', 'Enable Remove unreferenced properties from the file.', {
+    .option('--prune <bool>', 'Removes properties from the file if they are not referenced by a Scene.', {
+        validator: Validator.BOOLEAN,
+        default: true,
+    })
+    .option('--prune.attributes <bool>', 'Whether to prune unused vertex attributes.', {
+        validator: Validator.BOOLEAN,
+        default: true,
+    })
+    .option('--prune.solidTextures <bool>', 'Whether to prune solid (single-color) textures, converting them to material factors.', {
         validator: Validator.BOOLEAN,
         default: true,
     })

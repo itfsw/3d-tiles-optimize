@@ -18,10 +18,10 @@ const logger = Loggers.get('optimizeGlb')
  * of I3DM and B3DM. Details are not specified here.
  *
  * @param glbBuffer - The buffer containing the binary glTF.
- * @param options - Options specifying custom glTF-Transform behavior.
+ * @param opts - Options specifying custom glTF-Transform behavior.
  * @returns A promise that resolves to the optimized binary glTF.
  */
-export async function optimizeGlb(glbBuffer: Buffer, options: OptimizeOptions): Promise<Buffer> {
+export async function optimizeGlb(glbBuffer: Buffer, opts: OptimizeOptions): Promise<Buffer> {
     return new Promise((resolve, reject) => {
         // 读取 buffer
         createNodeIO().then(io => {
@@ -29,54 +29,60 @@ export async function optimizeGlb(glbBuffer: Buffer, options: OptimizeOptions): 
                 // 优化配置
                 const transforms: Transform[] = []
 
-                if (options.dedup) {
+                if (opts.dedup) {
                     logger.info('GLB Remove duplicate vertex or texture data, if any.')
                     transforms.push(dedup())
                 }
 
-                if (options.instance) {
+                if (opts.instance) {
                     logger.info('Create GPU instances from shared mesh references.')
                     transforms.push(instance({
-                        min: options.instanceMin
+                        min: opts.instanceMin
                     }))
                 }
 
-                if (options.palette) {
+                if (opts.palette) {
                     logger.info('Creates palette textures and merges materials.')
                     transforms.push(palette({
-                        min: options.paletteMin
+                        min: opts.paletteMin,
+                        keepAttributes: !opts.prune || !opts.pruneAttributes,
                     }))
                 }
 
-                if (options.resample) {
+                if (opts.resample) {
                     logger.info('GLB Losslessly resample animation frames.')
                     transforms.push(resample())
                 }
 
-                if (options.prune) {
-                    logger.info('GLB Remove unused nodes, textures, or other data.')
-                    transforms.push(prune())
+                if (opts.prune) {
+                    logger.info('Removes properties from the file if they are not referenced by a Scene.')
+                    transforms.push(prune({
+                        keepAttributes: !opts.pruneAttributes,
+                        keepIndices: false,
+                        keepLeaves: false,
+                        keepSolidTextures: !opts.pruneSolidTextures,
+                    }))
                 }
 
 
-                if (options.textureCompress) {
+                if (opts.textureCompress) {
                     logger.info('GLB Textures Compress.')
-                    const resize = options.textureCompressResize === false ? undefined : options.textureCompressResize;
+                    const resize = opts.textureCompressResize === false ? undefined : opts.textureCompressResize;
                     transforms.push(textureCompress({
                         encoder: sharp,
-                        targetFormat: options.textureCompressTargetFormat,
+                        targetFormat: opts.textureCompressTargetFormat,
                         resize: resize,
                     }))
                 }
 
-                if (options.draco) {
+                if (opts.draco) {
                     logger.info('GLB Compress mesh geometry with Draco.')
                     transforms.push(draco())
-                } else if (options.meshopt) {
+                } else if (opts.meshopt) {
                     logger.info('Compress geometry and animation with Meshopt.')
                     transforms.push(meshopt({
                         encoder: MeshoptEncoder,
-                        level: options.meshoptLevel
+                        level: opts.meshoptLevel
                     }))
                 }
 
