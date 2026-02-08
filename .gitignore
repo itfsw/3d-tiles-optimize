@@ -7,3 +7,4 @@ node_modules
 .eslintcache
 .idea
 data
+/package-lock.json
