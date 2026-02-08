@@ -13,19 +13,19 @@ program.command('optimize', 'Optimize 3d-tiles by 3d-tiles-tools and glTF-Transf
         validator: ['trace', 'debug', 'info', 'warn', 'error', 'fatal', 'silent'],
         default: 'warn'
     })
-    .option('--combine <combine>', 'Combines all external tilesets into a single tileset.', {
+    .option('--combine <bool>', 'Combines all external tilesets into a single tileset.', {
         validator: Validator.BOOLEAN,
         default: false,
     })
-    .option('--dedup.enable <dedup.enable>', 'Enable Deduplicate accessors and textures.', {
+    .option('--dedup.enable <bool>', 'Enable Deduplicate accessors and textures.', {
         validator: Validator.BOOLEAN,
         default: true,
     })
-    .option('--prune.enable <prune.enable>', 'Enable Remove unreferenced properties from the file.', {
+    .option('--prune.enable <bool>', 'Enable Remove unreferenced properties from the file.', {
         validator: Validator.BOOLEAN,
         default: true,
     })
-    .option('--instance.enable <instance.enable>', 'Enable Create GPU instances from shared mesh references.', {
+    .option('--instance.enable <bool>', 'Enable Create GPU instances from shared mesh references.', {
         validator: Validator.BOOLEAN,
         default: true,
     })
@@ -33,31 +33,35 @@ program.command('optimize', 'Optimize 3d-tiles by 3d-tiles-tools and glTF-Transf
         validator: Validator.NUMBER,
         default: 5,
     })
-    .option('--draco.enable <draco.enable>', 'Enable Compress geometry with Draco.', {
+    .option('--palette <bool>', 'Creates palette textures and merges materials.', {
         validator: Validator.BOOLEAN,
         default: true,
     })
-    .option('--meshopt.enable <meshopt.enable>', 'Enable Compress geometry and animation with Meshopt.', {
+    .option('--draco.enable <bool>', 'Enable Compress geometry with Draco.', {
+        validator: Validator.BOOLEAN,
+        default: true,
+    })
+    .option('--meshopt.enable <bool>', 'Enable Compress geometry and animation with Meshopt.', {
         validator: Validator.BOOLEAN,
         default: false,
     })
-    .option('--meshopt.level <meshopt.level>', 'Meshopt compress level.', {
+    .option('--meshopt.level <level>', 'Meshopt compress level.', {
         validator: ['medium', 'high'],
         default: 'high',
     })
-    .option('--textureCompress.enable <textureCompress.enable>', 'Enable Textures Compress.', {
+    .option('--textureCompress.enable <bool>', 'Enable Textures Compress.', {
         validator: Validator.BOOLEAN,
         default: true,
     })
-    .option('--textureCompress.targetFormat <textureCompress.targetFormat>', 'Target image format. If specified, included textures in other formats will be converted.', {
+    .option('--textureCompress.targetFormat <format>', 'Target image format. If specified, included textures in other formats will be converted.', {
         validator: ['jpeg', 'png', 'webp', 'avif'],
         default: 'webp'
     })
-    .option('--resample.enable <resample.enable>', 'Enable Resample animations, losslessly deduplicating keyframes.', {
+    .option('--resample.enable <bool>', 'Enable Resample animations, losslessly deduplicating keyframes.', {
         validator: Validator.BOOLEAN,
         default: true,
     })
-    .option('--textureCompress.resize <textureCompress.resize>', 'Resizes textures to given maximum [width,height] | false, preserving aspect ratio. Presets "nearest-pot", "ceil-pot", and "floor-pot" resize textures to power-of-two dimensions.', {
+    .option('--textureCompress.resize <resize>', 'Resizes textures to given maximum [width,height] | false, preserving aspect ratio. Presets "nearest-pot", "ceil-pot", and "floor-pot" resize textures to power-of-two dimensions.', {
         validator: (value) => {
             return new Promise((resolve, reject) => {
                 if (value === false || (typeof value === 'string' && ['nearest-pot', 'ceil-pot', 'floor-pot'].includes(value))) {

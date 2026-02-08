@@ -41,6 +41,7 @@ Using 3d-tiles-optimize as a command-line tool:
 | `--meshopt.enable`               | Enable Compress geometry and animation with Meshopt.                                                                                                                               | false   |
 | `--meshopt.level`                | Meshopt compress level.                                                                                                                                                            | high    |
 | 🎨 MATERIAL                      |
+| `--palette`                      | Creates palette textures and merges materials.                                                                                                                                     | true    |
 | 🖼  TEXTURE                      |
 | `--textureCompress.enable`       | Enable Textures Compress.                                                                                                                                                          | true    |
 | `--textureCompress.targetFormat` | Target image format. If specified, included textures in other formats will be converted.                                                                                           | webp    |

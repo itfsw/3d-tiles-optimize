@@ -14,6 +14,7 @@ export interface OptimizeOptions extends Record<string, any> {
     dracoEnable: boolean;
     meshoptEnable: boolean;
     meshoptLevel: 'medium' | 'high';
+    palette: boolean;
     textureCompressEnable: boolean;
     textureCompressTargetFormat: 'jpeg' | 'png' | 'webp' | 'avif';
     textureCompressResize: TextureCompressResize | false;

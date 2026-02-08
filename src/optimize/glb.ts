@@ -5,7 +5,7 @@ import type {OptimizeOptions} from "../types.js";
 import {ALL_EXTENSIONS} from "@gltf-transform/extensions";
 import {NodeIO, type Transform} from "@gltf-transform/core";
 import {MeshoptDecoder, MeshoptEncoder} from 'meshoptimizer';
-import {dedup, draco, instance, meshopt, prune, resample, textureCompress} from '@gltf-transform/functions';
+import {dedup, draco, instance, meshopt, palette, prune, resample, textureCompress} from '@gltf-transform/functions';
 
 const logger = Loggers.get('optimizeGlb')
 
@@ -39,6 +39,11 @@ export async function optimizeGlb(glbBuffer: Buffer, options: OptimizeOptions): 
                     transforms.push(instance({
                         min: options.instanceMin
                     }))
+                }
+
+                if (options.palette) {
+                    logger.info('Creates palette textures and merges materials.')
+                    transforms.push(palette())
                 }
 
                 if (options.resampleEnable) {
