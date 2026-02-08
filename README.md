@@ -21,15 +21,23 @@ Using 3d-tiles-optimize as a command-line tool:
 ```
 
 ## Optimize Options
+
 | Option                           | Description                                                                                                                                                                        | Default |
 |----------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|
+| 🐦 COMMON                        |
 | `--logLevel`                     | The log level. Valid values are trace, debug, info, warn, error, fatal, and silent                                                                                                 | warn    |
+| 🌓 PIPELINE                      |
 | `--combine`                      | Combines all external tilesets into a single tileset.                                                                                                                              | false   |
-| `--resample.enable`              | Enable Losslessly resample animation frames.                                                                                                                                       | true    |
-| `--prune.enable`                 | Enable Remove unused nodes, textures, or other data.                                                                                                                               | true    |
+| 📦 PACKAGE                       |
 | `--dedup.enable`                 | Enable Remove duplicate vertex or texture data, if any.                                                                                                                            | true    |
+| `--prune.enable`                 | Enable Remove unused nodes, textures, or other data.                                                                                                                               | true    |
+| 🫖  GEOMETRY                     |
 | `--draco.enable`                 | Enable Compress mesh geometry with Draco.                                                                                                                                          | true    |
+| 🎨 MATERIAL                      |
+| 🖼  TEXTURE                      |
 | `--textureCompress.enable`       | Enable Textures Compress.                                                                                                                                                          | true    |
 | `--textureCompress.targetFormat` | Target image format. If specified, included textures in other formats will be converted.                                                                                           | webp    |
 | `--textureCompress.resize`       | Resizes textures to given maximum [width,height] \| false, preserving aspect ratio. Presets "nearest-pot", "ceil-pot", and "floor-pot" resize textures to power-of-two dimensions. | false   |
+| ⏯️ ANIMATION                     |
+| `--resample.enable`              | Enable Losslessly resample animation frames.                                                                                                                                       | true    |
 
