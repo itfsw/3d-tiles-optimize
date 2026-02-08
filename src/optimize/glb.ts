@@ -15,7 +15,7 @@ import {
     palette,
     prune,
     resample,
-    textureCompress
+    textureCompress, weld
 } from '@gltf-transform/functions';
 
 const logger = Loggers.get('optimizeGlb')
@@ -72,6 +72,11 @@ export async function optimizeGlb(glbBuffer: Buffer, opts: OptimizeOptions): Pro
                             }),
                         );
                     }
+                }
+
+                if (opts.weld) {
+                    logger.info('Merge equivalent vertices. Required when simplifying geometry.')
+                    transforms.push(weld())
                 }
 
                 if (opts.resample) {

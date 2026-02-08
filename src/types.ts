@@ -20,6 +20,7 @@ export interface OptimizeOptions extends Record<string, any> {
     draco: boolean;
     meshopt: boolean;
     meshoptLevel: 'medium' | 'high';
+    weld: boolean;
     palette: boolean;
     paletteMin: number;
     textureCompress: boolean;
