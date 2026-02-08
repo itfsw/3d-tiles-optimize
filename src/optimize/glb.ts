@@ -43,7 +43,9 @@ export async function optimizeGlb(glbBuffer: Buffer, options: OptimizeOptions): 
 
                 if (options.palette) {
                     logger.info('Creates palette textures and merges materials.')
-                    transforms.push(palette())
+                    transforms.push(palette({
+                        min: options.paletteMin
+                    }))
                 }
 
                 if (options.resample) {

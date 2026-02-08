@@ -2,6 +2,7 @@ import {Loggers} from "3d-tiles-tools";
 import {program, Validator} from './program.js';
 import type {OptimizeOptions} from "./types.js";
 import {optimize} from "./optimize/functions.js";
+import {INSTANCE_DEFAULTS, PALETTE_DEFAULTS} from "@gltf-transform/functions";
 
 // OPTIMIZE
 program.command('optimize', 'Optimize 3d-tiles by 3d-tiles-tools and glTF-Transform')
@@ -31,11 +32,15 @@ program.command('optimize', 'Optimize 3d-tiles by 3d-tiles-tools and glTF-Transf
     })
     .option('--instance.min <instance.min>', 'Number of instances required for instancing.', {
         validator: Validator.NUMBER,
-        default: 5,
+        default: INSTANCE_DEFAULTS.min,
     })
     .option('--palette <bool>', 'Creates palette textures and merges materials.', {
         validator: Validator.BOOLEAN,
         default: true,
+    })
+    .option('--palette.min <min>', 'Minimum number of blocks in the palette texture. If fewer unique material values are found, no palettes will be generated.', {
+        validator: Validator.NUMBER,
+        default: PALETTE_DEFAULTS.min,
     })
     .option('--draco <bool>', 'Enable Compress geometry with Draco.', {
         validator: Validator.BOOLEAN,

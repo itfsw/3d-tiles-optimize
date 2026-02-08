@@ -42,6 +42,7 @@ Using 3d-tiles-optimize as a command-line tool:
 | `--meshopt.level`                | Meshopt compress level.                                                                                                                                                            | high    |
 | 🎨 MATERIAL                      |
 | `--palette`                      | Creates palette textures and merges materials.                                                                                                                                     | true    |
+| `--palette.min`                  | Minimum number of blocks in the palette texture. If fewer unique material values are found, no palettes will be generated.                                                         | 5       |
 | 🖼  TEXTURE                      |
 | `--textureCompress`              | Textures Compress.                                                                                                                                                                 | true    |
 | `--textureCompress.targetFormat` | Target image format. If specified, included textures in other formats will be converted.                                                                                           | webp    |

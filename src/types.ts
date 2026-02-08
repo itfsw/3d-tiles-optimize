@@ -15,6 +15,7 @@ export interface OptimizeOptions extends Record<string, any> {
     meshopt: boolean;
     meshoptLevel: 'medium' | 'high';
     palette: boolean;
+    paletteMin: number;
     textureCompress: boolean;
     textureCompressTargetFormat: 'jpeg' | 'png' | 'webp' | 'avif';
     textureCompressResize: TextureCompressResize | false;
