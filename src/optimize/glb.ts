@@ -42,12 +42,14 @@ export async function optimizeGlb(glbBuffer: Buffer, options: OptimizeOptions): 
                 if (options.dracoEnable) {
                     transforms.push(draco())
                 }
-                // Convert textures to WebP (Requires glTF Transform v3 and Node.js).
-                transforms.push(textureCompress({
-                    encoder: sharp,
-                    targetFormat: 'webp',
-                    resize: [1024, 2024],
-                }))
+                // Textures Compress.
+                if (options.textureCompress) {
+                    transforms.push(textureCompress({
+                        encoder: sharp,
+                        targetFormat: 'webp',
+                        resize: [1024, 2024],
+                    }))
+                }
 
                 document.transform(...transforms).then(doc => {
                     // 数据输出

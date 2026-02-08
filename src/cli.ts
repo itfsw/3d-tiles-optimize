@@ -33,6 +33,10 @@ program.command('optimize', 'Optimize 3d-tiles by 3d-tiles-tools and glTF-Transf
         validator: Validator.BOOLEAN,
         default: true,
     })
+    .option('--textureCompress.enable <textureCompress.enable>', 'Enable Textures Compress.', {
+        validator: Validator.BOOLEAN,
+        default: true,
+    })
     // action
     .action(async ({args, options}) => {
         const opts = options as OptimizeOptions

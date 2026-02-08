@@ -8,4 +8,5 @@ export interface OptimizeOptions extends Record<string, any> {
     pruneEnable: boolean
     dedupEnable: boolean
     dracoEnable: boolean
+    textureCompressEnable: boolean
 }
