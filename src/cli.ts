@@ -41,11 +41,22 @@ program.command('optimize', 'Optimize 3d-tiles by 3d-tiles-tools and glTF-Transf
         validator: ['jpeg', 'png', 'webp', 'avif'],
         default: 'webp'
     })
-    .option('--textureCompress.resize <textureCompress.resize>', 'Resizes textures to given maximum width/height | false, preserving aspect ratio. Presets "nearest-pot", "ceil-pot", and "floor-pot" resize textures to power-of-two dimensions.', {
+    .option('--textureCompress.resize <textureCompress.resize>', 'Resizes textures to given maximum [width,height] | false, preserving aspect ratio. Presets "nearest-pot", "ceil-pot", and "floor-pot" resize textures to power-of-two dimensions.', {
         validator: (value) => {
             return new Promise((resolve, reject) => {
-                if (value === false || (value instanceof Array && value.length == 2) || ['nearest-pot', 'ceil-pot', 'floor-pot'].includes(value as string)) {
+                if (value === false || (typeof value === 'string' && ['nearest-pot', 'ceil-pot', 'floor-pot'].includes(value))) {
                     resolve(value)
+                } else if (typeof value === 'string') {
+                    try {
+                        const ary = JSON.parse(value)
+                        if (Array.isArray(ary) && ary.length === 2) {
+                            resolve(ary)
+                        } else {
+                            reject(new Error(`Unexpected resize array!`))
+                        }
+                    } catch (e) {
+                        reject(e)
+                    }
                 } else {
                     reject(new Error(`Unexpected resize type!`))
                 }
