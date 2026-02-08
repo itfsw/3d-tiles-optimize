@@ -1,11 +1,11 @@
 import sharp from "sharp";
 import draco3d from 'draco3dgltf';
 import {Loggers} from "3d-tiles-tools";
-import {MeshoptDecoder, MeshoptEncoder} from 'meshoptimizer';
 import type {OptimizeOptions} from "../types.js";
 import {ALL_EXTENSIONS} from "@gltf-transform/extensions";
 import {NodeIO, type Transform} from "@gltf-transform/core";
-import {dedup, draco, prune, resample, textureCompress} from '@gltf-transform/functions';
+import {MeshoptDecoder, MeshoptEncoder} from 'meshoptimizer';
+import {dedup, draco, meshopt, prune, resample, textureCompress} from '@gltf-transform/functions';
 
 const logger = Loggers.get('optimizeGlb')
 
@@ -29,27 +29,32 @@ export async function optimizeGlb(glbBuffer: Buffer, options: OptimizeOptions): 
                 // 优化配置
                 const transforms: Transform[] = []
 
-                // Losslessly resample animation frames.
                 if (options.resampleEnable) {
                     logger.info('GLB Losslessly resample animation frames.')
                     transforms.push(resample())
                 }
-                // Remove unused nodes, textures, or other data.
+
                 if (options.pruneEnable) {
                     logger.info('GLB Remove unused nodes, textures, or other data.')
                     transforms.push(prune())
                 }
-                // Remove duplicate vertex or texture data, if any.
+
                 if (options.dedupEnable) {
                     logger.info('GLB Remove duplicate vertex or texture data, if any.')
                     transforms.push(dedup())
                 }
-                // Compress mesh geometry with Draco.
+
                 if (options.dracoEnable) {
                     logger.info('GLB Compress mesh geometry with Draco.')
                     transforms.push(draco())
+                } else if (options.meshoptEnable) {
+                    logger.info('Enable Compress geometry and animation with Meshopt.')
+                    transforms.push(meshopt({
+                        encoder: MeshoptEncoder,
+                        level: options.meshoptLevel
+                    }))
                 }
-                // Textures Compress.
+
                 if (options.textureCompressEnable) {
                     logger.info('GLB Textures Compress.')
                     const resize = options.textureCompressResize === false ? undefined : options.textureCompressResize;

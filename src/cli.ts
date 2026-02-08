@@ -29,6 +29,14 @@ program.command('optimize', 'Optimize 3d-tiles by 3d-tiles-tools and glTF-Transf
         validator: Validator.BOOLEAN,
         default: true,
     })
+    .option('--meshopt.enable <meshopt.enable>', 'Enable Compress geometry and animation with Meshopt.', {
+        validator: Validator.BOOLEAN,
+        default: false,
+    })
+    .option('--meshopt.level <meshopt.level>', 'Meshopt compress level.', {
+        validator: ['medium', 'high'],
+        default: 'high',
+    })
     .option('--textureCompress.enable <textureCompress.enable>', 'Enable Textures Compress.', {
         validator: Validator.BOOLEAN,
         default: true,

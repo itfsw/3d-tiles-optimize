@@ -33,6 +33,8 @@ Using 3d-tiles-optimize as a command-line tool:
 | `--prune.enable`                 | Enable Remove unreferenced properties from the file.                                                                                                                               | true    |
 | 🫖  GEOMETRY                     |
 | `--draco.enable`                 | Enable Compress geometry with Draco.                                                                                                                                               | true    |
+| `--meshopt.enable`               | Enable Compress geometry and animation with Meshopt.                                                                                                                               | false   |
+| `--meshopt.level`                | Meshopt compress level.                                                                                                                                                            | high    |
 | 🎨 MATERIAL                      |
 | 🖼  TEXTURE                      |
 | `--textureCompress.enable`       | Enable Textures Compress.                                                                                                                                                          | true    |
