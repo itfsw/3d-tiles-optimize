@@ -44,6 +44,16 @@ export async function optimizeGlb(glbBuffer: Buffer, options: OptimizeOptions): 
                     transforms.push(dedup())
                 }
 
+                if (options.textureCompressEnable) {
+                    logger.info('GLB Textures Compress.')
+                    const resize = options.textureCompressResize === false ? undefined : options.textureCompressResize;
+                    transforms.push(textureCompress({
+                        encoder: sharp,
+                        targetFormat: options.textureCompressTargetFormat,
+                        resize: resize,
+                    }))
+                }
+
                 if (options.dracoEnable) {
                     logger.info('GLB Compress mesh geometry with Draco.')
                     transforms.push(draco())
@@ -52,16 +62,6 @@ export async function optimizeGlb(glbBuffer: Buffer, options: OptimizeOptions): 
                     transforms.push(meshopt({
                         encoder: MeshoptEncoder,
                         level: options.meshoptLevel
-                    }))
-                }
-
-                if (options.textureCompressEnable) {
-                    logger.info('GLB Textures Compress.')
-                    const resize = options.textureCompressResize === false ? undefined : options.textureCompressResize;
-                    transforms.push(textureCompress({
-                        encoder: sharp,
-                        targetFormat: options.textureCompressTargetFormat,
-                        resize: resize,
                     }))
                 }
 

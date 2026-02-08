@@ -22,6 +22,8 @@ Using 3d-tiles-optimize as a command-line tool:
 
 ## Optimize Options
 
+[@see glTF-Transform Configuration](https://gltf-transform.dev/)
+
 | Option                           | Description                                                                                                                                                                        | Default |
 |----------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|
 | 🐦 COMMON                        |
