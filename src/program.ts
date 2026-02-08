@@ -1,8 +1,8 @@
 import {
-	type Command,
-	type ParsedOption,
-	program as _program,
-	type Validator as CaporalValidator,
+    type Command,
+    type ParsedOption,
+    program as _program,
+    type Validator as CaporalValidator,
 } from '@donmccurdy/caporal';
 
 const PAD_EMOJI = new Set(['🫖', '🖼', '⏯']);
@@ -22,6 +22,7 @@ interface IExecOptions {
 }
 
 interface IInternalProgram extends IProgram {
+    version: (version: string) => this;
     description: (desc: string) => this;
     disableGlobalOption: (name: string) => this;
     run: () => this;
@@ -45,6 +46,11 @@ export interface IHelpOptions {
 }
 
 class ProgramImpl implements IInternalProgram {
+
+    version(version: string): this {
+        _program.version(version);
+        return this;
+    }
 
     description(desc: string): this {
         _program.description(desc);

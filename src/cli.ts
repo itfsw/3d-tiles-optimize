@@ -1,4 +1,6 @@
+import {resolve} from "node:path";
 import {Loggers} from "3d-tiles-tools";
+import { readJSONSync } from 'fs-extra';
 import {program, Validator} from './program.js';
 import type {OptimizeOptions} from "./types.js";
 import {optimize} from "./optimize/functions.js";
@@ -150,5 +152,12 @@ program.option('--limit-input-pixels', 'Attempts to avoid processing very high r
     default: true,
     hidden: true,
 });
+
+/**********************************************************************************************
+ * Version.
+ */
+const __dirname = import.meta.dirname;
+const pkgJson = readJSONSync(resolve(__dirname, '../package.json'));
+program.version(pkgJson.version).description('Optimize 3d-tiles by 3d-tiles-tools with glTF-Transform.');
 
 export {Validator, program};
