@@ -26,4 +26,5 @@ Using 3d-tiles-optimize as a command-line tool:
 | `--logLevel`        | The log level. Valid values are trace, debug, info, warn, error, fatal, and silent | warn    |
 | `--combine`         | Combines all external tilesets into a single tileset.                              | false   |
 | `--resample.enable` | Enable Losslessly resample animation frames.                                       | true    |
+| `--prune.enable`    | Enable Remove duplicate vertex or texture data, if any.                            | true    |
 

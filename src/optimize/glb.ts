@@ -31,7 +31,9 @@ export async function optimizeGlb(glbBuffer: Buffer, options: OptimizeOptions): 
                     transforms.push(resample())
                 }
                 // Remove unused nodes, textures, or other data.
-                transforms.push(prune())
+                if (options.pruneEnable) {
+                    transforms.push(prune())
+                }
                 // Remove duplicate vertex or texture data, if any.
                 transforms.push(dedup())
                 // Compress mesh geometry with Draco.
