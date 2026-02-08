@@ -1,6 +1,6 @@
 {
   "name": "3d-tiles-optimize",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "3d tiles 压缩优化器",
   "license": "Apache-2.0",
   "repository": "github:itfsw/3d-tiles-optimize",
@@ -37,7 +37,6 @@
   "files": [
     "bin/",
     "dist/",
-    "src/",
     "README.md",
     "LICENSE.md",
     "package-lock.json"
