@@ -10,6 +10,7 @@ import {
     draco,
     flatten,
     instance,
+    join,
     meshopt,
     palette,
     prune,
@@ -62,6 +63,15 @@ export async function optimizeGlb(glbBuffer: Buffer, opts: OptimizeOptions): Pro
                 if (opts.flatten) {
                     logger.info('Flatten scene graph.')
                     transforms.push(flatten())
+                    if (opts.join) {
+                        logger.info('Join meshes and reduce draw calls. Requires `--flatten`.')
+                        transforms.push(
+                            join({
+                                keepNamed: !opts.joinNamed,
+                                keepMeshes: !opts.joinMeshes,
+                            }),
+                        );
+                    }
                 }
 
                 if (opts.resample) {

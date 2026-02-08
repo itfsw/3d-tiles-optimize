@@ -46,6 +46,9 @@ Using 3d-tiles-optimize as a command-line tool:
 | 🎨 MATERIAL                      |
 | `--palette`                      | Creates palette textures and merges materials.                                                                                                                                     | true    |
 | `--palette.min`                  | Minimum number of blocks in the palette texture. If fewer unique material values are found, no palettes will be generated.                                                         | 5       |
+| `--join`                         | Join meshes and reduce draw calls. Requires `--flatten`.                                                                                                                           | true    |
+| `--join.meshes`                  | Join distinct meshes and nodes. Requires `--join`.                                                                                                                                 | true    |
+| `--join.named`                   | Join named meshes and nodes. Requires `--join`.                                                                                                                                    | true    |
 | 🖼  TEXTURE                      |
 | `--textureCompress`              | Textures Compress.                                                                                                                                                                 | true    |
 | `--textureCompress.targetFormat` | Target image format. If specified, included textures in other formats will be converted.                                                                                           | webp    |

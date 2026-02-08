@@ -14,6 +14,9 @@ export interface OptimizeOptions extends Record<string, any> {
     instanceMin: number;
     dedup: boolean;
     flatten: boolean;
+    join: boolean;
+    joinNamed: boolean;
+    joinMeshes: boolean;
     draco: boolean;
     meshopt: boolean;
     meshoptLevel: 'medium' | 'high';

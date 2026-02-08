@@ -2,7 +2,7 @@ import {Loggers} from "3d-tiles-tools";
 import {program, Validator} from './program.js';
 import type {OptimizeOptions} from "./types.js";
 import {optimize} from "./optimize/functions.js";
-import {INSTANCE_DEFAULTS, PALETTE_DEFAULTS} from "@gltf-transform/functions";
+import {INSTANCE_DEFAULTS, JOIN_DEFAULTS, PALETTE_DEFAULTS} from "@gltf-transform/functions";
 
 // OPTIMIZE
 program.command('optimize', 'Optimize 3d-tiles by 3d-tiles-tools and glTF-Transform')
@@ -53,6 +53,18 @@ program.command('optimize', 'Optimize 3d-tiles by 3d-tiles-tools and glTF-Transf
     .option('--flatten <bool>', 'Flatten scene graph.', {
         validator: Validator.BOOLEAN,
         default: true,
+    })
+    .option('--join <bool>', 'Join meshes and reduce draw calls. Requires `--flatten`.', {
+        validator: Validator.BOOLEAN,
+        default: true,
+    })
+    .option('--join.meshes <bool>', 'Join distinct meshes and nodes. Requires `--join`.', {
+        validator: Validator.BOOLEAN,
+        default: !JOIN_DEFAULTS.keepMeshes,
+    })
+    .option('--join.named <bool>', 'Join named meshes and nodes. Requires `--join`.', {
+        validator: Validator.BOOLEAN,
+        default: !JOIN_DEFAULTS.keepNamed,
     })
     .option('--draco <bool>', 'Enable Compress geometry with Draco.', {
         validator: Validator.BOOLEAN,
