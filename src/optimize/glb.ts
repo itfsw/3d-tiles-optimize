@@ -5,7 +5,7 @@ import type {OptimizeOptions} from "../types.js";
 import {ALL_EXTENSIONS} from "@gltf-transform/extensions";
 import {NodeIO, type Transform} from "@gltf-transform/core";
 import {MeshoptDecoder, MeshoptEncoder} from 'meshoptimizer';
-import {dedup, draco, meshopt, prune, resample, textureCompress} from '@gltf-transform/functions';
+import {dedup, draco, instance, meshopt, prune, resample, textureCompress} from '@gltf-transform/functions';
 
 const logger = Loggers.get('optimizeGlb')
 
@@ -29,6 +29,16 @@ export async function optimizeGlb(glbBuffer: Buffer, options: OptimizeOptions): 
                 // 优化配置
                 const transforms: Transform[] = []
 
+                if (options.dedupEnable) {
+                    logger.info('GLB Remove duplicate vertex or texture data, if any.')
+                    transforms.push(dedup())
+                }
+
+                if (options.instanceEnable){
+                    logger.info('Enable Create GPU instances from shared mesh references.')
+                    transforms.push(instance())
+                }
+
                 if (options.resampleEnable) {
                     logger.info('GLB Losslessly resample animation frames.')
                     transforms.push(resample())
@@ -39,10 +49,6 @@ export async function optimizeGlb(glbBuffer: Buffer, options: OptimizeOptions): 
                     transforms.push(prune())
                 }
 
-                if (options.dedupEnable) {
-                    logger.info('GLB Remove duplicate vertex or texture data, if any.')
-                    transforms.push(dedup())
-                }
 
                 if (options.textureCompressEnable) {
                     logger.info('GLB Textures Compress.')

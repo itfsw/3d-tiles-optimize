@@ -25,6 +25,10 @@ program.command('optimize', 'Optimize 3d-tiles by 3d-tiles-tools and glTF-Transf
         validator: Validator.BOOLEAN,
         default: true,
     })
+    .option('--instance.enable <instance.enable>', 'Enable Create GPU instances from shared mesh references.', {
+        validator: Validator.BOOLEAN,
+        default: true,
+    })
     .option('--draco.enable <draco.enable>', 'Enable Compress geometry with Draco.', {
         validator: Validator.BOOLEAN,
         default: true,
