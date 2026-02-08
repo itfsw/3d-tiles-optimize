@@ -37,6 +37,10 @@ program.command('optimize', 'Optimize 3d-tiles by 3d-tiles-tools and glTF-Transf
         validator: Validator.BOOLEAN,
         default: true,
     })
+    .option('--textureCompress.targetFormat <textureCompress.targetFormat>', 'Target image format. If specified, included textures in other formats will be converted.', {
+        validator: ['jpeg', 'png', 'webp', 'avif'],
+        default: 'webp'
+    })
     // action
     .action(async ({args, options}) => {
         const opts = options as OptimizeOptions

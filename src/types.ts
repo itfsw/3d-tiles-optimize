@@ -9,4 +9,5 @@ export interface OptimizeOptions extends Record<string, any> {
     dedupEnable: boolean
     dracoEnable: boolean
     textureCompressEnable: boolean
+    textureCompressTargetFormat?: 'jpeg' | 'png' | 'webp' | 'avif'
 }

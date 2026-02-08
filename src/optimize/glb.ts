@@ -46,7 +46,7 @@ export async function optimizeGlb(glbBuffer: Buffer, options: OptimizeOptions): 
                 if (options.textureCompress) {
                     transforms.push(textureCompress({
                         encoder: sharp,
-                        targetFormat: 'webp',
+                        targetFormat: options.textureCompressTargetFormat,
                         resize: [1024, 2024],
                     }))
                 }
