@@ -8,6 +8,7 @@ import {
     meshopt,
     palette,
     prune,
+    quantize,
     resample,
     simplify,
     sparse,
@@ -178,7 +179,10 @@ async function createTransforms(opts: OptimizeOptions) {
     }
 
     if (opts.draco) {
-        logger.info('GLB Compress mesh geometry with Draco.')
+        logger.info('Compress geometry with Draco.')
+        if (!opts.weld) {
+            logger.warn('Ignoring --no-weld, required for Draco compression.');
+        }
         transforms.push(draco())
     } else if (opts.meshopt) {
         logger.info('Compress geometry and animation with Meshopt.')
@@ -186,6 +190,9 @@ async function createTransforms(opts: OptimizeOptions) {
             encoder: MeshoptEncoder,
             level: opts.meshoptLevel
         }))
+    } else if (opts.quantize) {
+        logger.info('Quantize geometry, reducing precision and memory.')
+        transforms.push(quantize())
     }
 
     return transforms;

@@ -34,7 +34,7 @@ program.command('optimize', 'Optimize 3d-tiles by 3d-tiles-tools and glTF-Transf
         validator: Validator.BOOLEAN,
         default: true,
     })
-    .option('--instance <bool>', 'Enable Create GPU instances from shared mesh references.', {
+    .option('--instance <bool>', 'Create GPU instances from shared mesh references.', {
         validator: Validator.BOOLEAN,
         default: true,
     })
@@ -86,17 +86,21 @@ program.command('optimize', 'Optimize 3d-tiles by 3d-tiles-tools and glTF-Transf
         validator: Validator.BOOLEAN,
         default: true,
     })
-    .option('--draco <bool>', 'Enable Compress geometry with Draco.', {
-        validator: Validator.BOOLEAN,
-        default: true,
-    })
-    .option('--meshopt <bool>', 'Enable Compress geometry and animation with Meshopt.', {
+    .option('--draco <bool>', 'Compress geometry with Draco.', {
         validator: Validator.BOOLEAN,
         default: false,
+    })
+    .option('--meshopt <bool>', 'Compress geometry and animation with Meshopt.', {
+        validator: Validator.BOOLEAN,
+        default: true,
     })
     .option('--meshopt.level <level>', 'Meshopt compress level.', {
         validator: ['medium', 'high'],
         default: 'high',
+    })
+    .option('--quantize <bool>', 'Quantize geometry, reducing precision and memory.', {
+        validator: Validator.BOOLEAN,
+        default: false,
     })
     .option('--textureCompress <format>', 'Texture compression format. KTX2 optimizes VRAM usage and performance; AVIF and WebP optimize transmission size. Auto recompresses in original format.', {
         validator: ['ktx2', 'webp', 'avif', 'auto', false],

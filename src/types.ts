@@ -20,6 +20,7 @@ export interface OptimizeOptions extends Record<string, any> {
     draco: boolean;
     meshopt: boolean;
     meshoptLevel: 'medium' | 'high';
+    quantize: boolean;
     weld: boolean;
     simplify: boolean;
     simplifyError: number;
