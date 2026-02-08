@@ -59,5 +59,5 @@ Using 3d-tiles-optimize as a command-line tool:
 | `--textureCompress.targetFormat` | Target image format. If specified, included textures in other formats will be converted.                                                                                           | webp    |
 | `--textureCompress.resize`       | Resizes textures to given maximum [width,height] \| false, preserving aspect ratio. Presets "nearest-pot", "ceil-pot", and "floor-pot" resize textures to power-of-two dimensions. | false   |
 | ⏯️ ANIMATION                     |
-| `--resample`                     | Resample animations, losslessly deduplicating keyframes.                                                                                                                           | true    |
+| `--resample`                     | Resample animations, losslessly deduplicating keyframes                                                                                                                            | true    |
 

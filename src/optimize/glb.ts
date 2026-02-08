@@ -19,6 +19,7 @@ import type {OptimizeOptions} from "../types.js";
 import {ALL_EXTENSIONS} from "@gltf-transform/extensions";
 import {NodeIO, type Transform} from "@gltf-transform/core";
 import {MeshoptDecoder, MeshoptEncoder, MeshoptSimplifier} from 'meshoptimizer';
+import { ready as resampleReady, resample as resampleWASM } from 'keyframe-resample';
 
 const logger = Loggers.get('optimizeGlb')
 
@@ -94,8 +95,11 @@ export async function optimizeGlb(glbBuffer: Buffer, opts: OptimizeOptions): Pro
                 }
 
                 if (opts.resample) {
-                    logger.info('GLB Losslessly resample animation frames.')
-                    transforms.push(resample())
+                    logger.info('Resample animations, losslessly deduplicating keyframes.')
+                    transforms.push(resample({
+                        ready: resampleReady,
+                        resample: resampleWASM
+                    }))
                 }
 
                 if (opts.prune) {

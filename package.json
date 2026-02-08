@@ -32,6 +32,7 @@
     "@gltf-transform/functions": "^4.3.0",
     "3d-tiles-tools": "^0.5.1",
     "draco3dgltf": "^1.5.7",
+    "keyframe-resample": "^0.1.0",
     "meshoptimizer": "^1.0.1",
     "sharp": "^0.34.5"
   },

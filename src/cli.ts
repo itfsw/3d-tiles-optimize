@@ -106,7 +106,7 @@ program.command('optimize', 'Optimize 3d-tiles by 3d-tiles-tools and glTF-Transf
         validator: ['jpeg', 'png', 'webp', 'avif'],
         default: 'webp'
     })
-    .option('--resample <bool>', 'Enable Resample animations, losslessly deduplicating keyframes.', {
+    .option('--resample <bool>', 'Resample animations, losslessly deduplicating keyframes', {
         validator: Validator.BOOLEAN,
         default: true,
     })
