@@ -17,19 +17,15 @@ program.command('optimize', 'Optimize 3d-tiles by 3d-tiles-tools and glTF-Transf
         validator: Validator.BOOLEAN,
         default: false,
     })
-    .option('--resample.enable <resample.enable>', 'Enable Losslessly resample animation frames.', {
+    .option('--dedup.enable <dedup.enable>', 'Enable Deduplicate accessors and textures.', {
         validator: Validator.BOOLEAN,
         default: true,
     })
-    .option('--prune.enable <prune.enable>', 'Enable Remove unused nodes, textures, or other data.', {
+    .option('--prune.enable <prune.enable>', 'Enable Remove unreferenced properties from the file.', {
         validator: Validator.BOOLEAN,
         default: true,
     })
-    .option('--dedup.enable <dedup.enable>', 'Enable Remove duplicate vertex or texture data, if any.', {
-        validator: Validator.BOOLEAN,
-        default: true,
-    })
-    .option('--draco.enable <draco.enable>', 'Enable Compress mesh geometry with Draco.', {
+    .option('--draco.enable <draco.enable>', 'Enable Compress geometry with Draco.', {
         validator: Validator.BOOLEAN,
         default: true,
     })
@@ -40,6 +36,10 @@ program.command('optimize', 'Optimize 3d-tiles by 3d-tiles-tools and glTF-Transf
     .option('--textureCompress.targetFormat <textureCompress.targetFormat>', 'Target image format. If specified, included textures in other formats will be converted.', {
         validator: ['jpeg', 'png', 'webp', 'avif'],
         default: 'webp'
+    })
+    .option('--resample.enable <resample.enable>', 'Enable Resample animations, losslessly deduplicating keyframes.', {
+        validator: Validator.BOOLEAN,
+        default: true,
     })
     .option('--textureCompress.resize <textureCompress.resize>', 'Resizes textures to given maximum [width,height] | false, preserving aspect ratio. Presets "nearest-pot", "ceil-pot", and "floor-pot" resize textures to power-of-two dimensions.', {
         validator: (value) => {
