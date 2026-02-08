@@ -1,8 +1,7 @@
 import {program, Validator} from './program.js';
 import {optimize} from "./optimize/functions.js";
 import {Loggers} from "3d-tiles-tools";
-
-const logger = Loggers.get("CLI");
+import type {OptimizeOptions} from "./types.js";
 
 // OPTIMIZE
 program.command('optimize', 'Optimize 3d-tiles by 3d-tiles-tools and glTF-Transform')
@@ -10,29 +9,20 @@ program.command('optimize', 'Optimize 3d-tiles by 3d-tiles-tools and glTF-Transf
     .argument('<input>', 'Dir to read 3d-tiles')
     .argument('<output>', 'Dir to write output')
     // options
-    .option('--logLevel <logLevel>', 'The log level. Valid values are trace, debug, info, warn, error, fatal, and silent')
+    .option('--logLevel <logLevel>', 'The log level. Valid values are trace, debug, info, warn, error, fatal, and silent', {
+        validator: ['trace', 'debug', 'info', 'warn', 'error', 'fatal', 'silent'],
+        default: 'warn'
+    })
+    .option('--combine <combine>', 'Combines all external tilesets into a single tileset.', {
+        validator: Validator.BOOLEAN,
+        default: false,
+    })
     // action
     .action(async ({args, options}) => {
+        const opts = options as OptimizeOptions
         // 日志
-        const logLevel = options.logLevel as string;
-        if (logLevel !== undefined) {
-            const validLogLevels = [
-                "trace",
-                "debug",
-                "info",
-                "warn",
-                "error",
-                "fatal",
-                "silent",
-            ];
-            if (validLogLevels.includes(logLevel)) {
-                Loggers.setLevel(logLevel);
-            } else {
-                logger.warn(`Invalid log level: ${logLevel}`);
-                Loggers.setLevel("info");
-            }
-        }
-        return optimize(args.input as string, args.output as string);
+        Loggers.setLevel(opts.logLevel);
+        return optimize(args.input as string, args.output as string, opts);
     });
 
 export {Validator, program};

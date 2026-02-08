@@ -4,6 +4,7 @@ import {logger} from "./logger.js";
 import {ALL_EXTENSIONS} from "@gltf-transform/extensions";
 import {NodeIO, type Transform} from "@gltf-transform/core";
 import {dedup, draco, prune, resample, textureCompress} from '@gltf-transform/functions';
+import type {OptimizeOptions} from "../types.js";
 
 /**
  * Given an input buffer containing a binary glTF asset, optimize it
@@ -17,8 +18,7 @@ import {dedup, draco, prune, resample, textureCompress} from '@gltf-transform/fu
  * @param options - Options specifying custom glTF-Transform behavior.
  * @returns A promise that resolves to the optimized binary glTF.
  */
-export async function optimizeGlb(glbBuffer: Buffer, options: any): Promise<Buffer> {
-    options = options ?? {};
+export async function optimizeGlb(glbBuffer: Buffer, options: OptimizeOptions): Promise<Buffer> {
     return new Promise((resolve, reject) => {
         // 读取 buffer
         createNodeIO().then(io => {

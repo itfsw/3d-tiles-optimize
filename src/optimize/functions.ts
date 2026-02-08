@@ -1,12 +1,14 @@
 import {type Pipeline, type TilesetStage} from '3d-tiles-tools'
 import {ExPipelineExecutor} from "../pipeline/ExPipelineExecutor.js";
+import type {OptimizeOptions} from "../types.js";
 
 /**
  * 优化
  * @param input 输入路径
  * @param output 输出路径
+ * @param options 配置
  */
-export function optimize(input: string, output: string): Promise<void> {
+export function optimize(input: string, output: string, options: OptimizeOptions): Promise<void> {
     // 创建流水线
     const tilesetStages: TilesetStage[] = [];
     const pipeline: Pipeline = {
@@ -21,10 +23,12 @@ export function optimize(input: string, output: string): Promise<void> {
         description: "Upgrade the input tileset to the latest version"
     })
     // 2. combine
-    tilesetStages.push({
-        name: "combine",
-        description: "Combine all external tilesets into one"
-    })
+    if (options.combine) {
+        tilesetStages.push({
+            name: "combine",
+            description: "Combine all external tilesets into one"
+        })
+    }
     // 3. 优化
     tilesetStages.push({
         name: "_optimizeGlb",
@@ -33,11 +37,7 @@ export function optimize(input: string, output: string): Promise<void> {
             {
                 name: "optimizeGlb",
                 description: "Apply glTF-Transform to each GLB content, with the given options",
-                options: {
-                    "dracoOptions": {
-                        "compressionLevel": 10
-                    }
-                }
+                options: options
             }
         ]
     })
