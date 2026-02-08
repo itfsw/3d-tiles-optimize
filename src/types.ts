@@ -6,4 +6,5 @@ export interface OptimizeOptions extends Record<string, any> {
     combine: boolean
     resampleEnable: boolean
     pruneEnable: boolean
+    dedupEnable: boolean
 }

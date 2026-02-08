@@ -35,7 +35,9 @@ export async function optimizeGlb(glbBuffer: Buffer, options: OptimizeOptions): 
                     transforms.push(prune())
                 }
                 // Remove duplicate vertex or texture data, if any.
-                transforms.push(dedup())
+                if (options.dedupEnable) {
+                    transforms.push(dedup())
+                }
                 // Compress mesh geometry with Draco.
                 transforms.push(draco())
                 // Convert textures to WebP (Requires glTF Transform v3 and Node.js).

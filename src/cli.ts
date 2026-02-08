@@ -21,7 +21,11 @@ program.command('optimize', 'Optimize 3d-tiles by 3d-tiles-tools and glTF-Transf
         validator: Validator.BOOLEAN,
         default: true,
     })
-    .option('--prune.enable <prune.enable>', 'Enable Remove duplicate vertex or texture data, if any.', {
+    .option('--prune.enable <prune.enable>', 'Enable Remove unused nodes, textures, or other data.', {
+        validator: Validator.BOOLEAN,
+        default: true,
+    })
+    .option('--dedup.enable <dedup.enable>', 'Enable Remove duplicate vertex or texture data, if any.', {
         validator: Validator.BOOLEAN,
         default: true,
     })
