@@ -34,7 +34,6 @@
     "cli-table3": "^0.6.5",
     "csv-stringify": "^6.6.0",
     "draco3dgltf": "^1.5.7",
-    "fs-extra": "^11.3.3",
     "keyframe-resample": "^0.1.0",
     "language-tags": "^2.1.0",
     "meshoptimizer": "^1.0.1",
