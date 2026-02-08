@@ -40,5 +40,8 @@
     "README.md",
     "LICENSE.md",
     "package-lock.json"
-  ]
+  ],
+  "publishConfig":   {
+    "registry": "https://registry.npmjs.org/"
+  }
 }
