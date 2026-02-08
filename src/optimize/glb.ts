@@ -34,9 +34,11 @@ export async function optimizeGlb(glbBuffer: Buffer, options: OptimizeOptions): 
                     transforms.push(dedup())
                 }
 
-                if (options.instanceEnable){
+                if (options.instanceEnable) {
                     logger.info('Enable Create GPU instances from shared mesh references.')
-                    transforms.push(instance())
+                    transforms.push(instance({
+                        min: options.instanceMin
+                    }))
                 }
 
                 if (options.resampleEnable) {

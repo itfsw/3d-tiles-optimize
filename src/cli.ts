@@ -29,6 +29,10 @@ program.command('optimize', 'Optimize 3d-tiles by 3d-tiles-tools and glTF-Transf
         validator: Validator.BOOLEAN,
         default: true,
     })
+    .option('--instance.min <instance.min>', 'Number of instances required for instancing.', {
+        validator: Validator.NUMBER,
+        default: 5,
+    })
     .option('--draco.enable <draco.enable>', 'Enable Compress geometry with Draco.', {
         validator: Validator.BOOLEAN,
         default: true,

@@ -35,6 +35,7 @@ Using 3d-tiles-optimize as a command-line tool:
 | `--prune.enable`                 | Enable Remove unreferenced properties from the file.                                                                                                                               | true    |
 | 🌍 SCENE                         |
 | `--instance.enable`              | Enable Create GPU instances from shared mesh references.                                                                                                                           | true    |
+| `--instance.min`                 | Number of instances required for instancing.                                                                                                                                       | 5       |
 | 🫖  GEOMETRY                     |
 | `--draco.enable`                 | Enable Compress geometry with Draco.                                                                                                                                               | true    |
 | `--meshopt.enable`               | Enable Compress geometry and animation with Meshopt.                                                                                                                               | false   |
