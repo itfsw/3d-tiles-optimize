@@ -2,7 +2,7 @@ import {Loggers} from "3d-tiles-tools";
 import {program, Validator} from './program.js';
 import type {OptimizeOptions} from "./types.js";
 import {optimize} from "./optimize/functions.js";
-import {INSTANCE_DEFAULTS, JOIN_DEFAULTS, PALETTE_DEFAULTS} from "@gltf-transform/functions";
+import {INSTANCE_DEFAULTS, JOIN_DEFAULTS, PALETTE_DEFAULTS, SIMPLIFY_DEFAULTS} from "@gltf-transform/functions";
 
 // OPTIMIZE
 program.command('optimize', 'Optimize 3d-tiles by 3d-tiles-tools and glTF-Transform')
@@ -65,6 +65,22 @@ program.command('optimize', 'Optimize 3d-tiles by 3d-tiles-tools and glTF-Transf
     .option('--join.named <bool>', 'Join named meshes and nodes. Requires `--join`.', {
         validator: Validator.BOOLEAN,
         default: !JOIN_DEFAULTS.keepNamed,
+    })
+    .option('--simplify <bool>', 'Simplify mesh geometry with meshoptimizer.', {
+        validator: Validator.BOOLEAN,
+        default: true,
+    })
+    .option('--simplify.error <error>', 'Simplification error tolerance, as a fraction of mesh extent.', {
+        validator: Validator.NUMBER,
+        default: SIMPLIFY_DEFAULTS.error,
+    })
+    .option('--simplify.ratio <ratio>', 'Target ratio (0–1) of vertices to keep.', {
+        validator: Validator.NUMBER,
+        default: SIMPLIFY_DEFAULTS.ratio,
+    })
+    .option('--simplify.lockBorder <bool>', 'Whether to lock topological borders of the mesh.', {
+        validator: Validator.BOOLEAN,
+        default: SIMPLIFY_DEFAULTS.lockBorder,
     })
     .option('--weld <bool>', 'Merge equivalent vertices. Required when simplifying geometry.', {
         validator: Validator.BOOLEAN,

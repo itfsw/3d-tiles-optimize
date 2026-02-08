@@ -44,6 +44,10 @@ Using 3d-tiles-optimize as a command-line tool:
 | `--meshopt`                      | Compress geometry and animation with Meshopt.                                                                                                                                      | false   |
 | `--meshopt.level`                | Meshopt compress level.                                                                                                                                                            | high    |
 | `--weld`                         | Merge equivalent vertices. Required when simplifying geometry.                                                                                                                     | true    |
+| `--simplify`                     | Simplify mesh geometry with meshoptimizer.                                                                                                                                         | true    |
+| `--simplify.error`               | Simplification error tolerance, as a fraction of mesh extent.                                                                                                                      | 0.0001  |
+| `--simplify.ratio`               | Target ratio (0–1) of vertices to keep.                                                                                                                                            | 0.0     |
+| `--simplify.lockBorder`          | Whether to lock topological borders of the mesh.                                                                                                                                   | false   |
 | 🎨 MATERIAL                      |
 | `--palette`                      | Creates palette textures and merges materials.                                                                                                                                     | true    |
 | `--palette.min`                  | Minimum number of blocks in the palette texture. If fewer unique material values are found, no palettes will be generated.                                                         | 5       |

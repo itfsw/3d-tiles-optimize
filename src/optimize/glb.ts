@@ -1,10 +1,5 @@
 import sharp from "sharp";
 import draco3d from 'draco3dgltf';
-import {Loggers} from "3d-tiles-tools";
-import type {OptimizeOptions} from "../types.js";
-import {ALL_EXTENSIONS} from "@gltf-transform/extensions";
-import {NodeIO, type Transform} from "@gltf-transform/core";
-import {MeshoptDecoder, MeshoptEncoder} from 'meshoptimizer';
 import {
     dedup,
     draco,
@@ -15,8 +10,15 @@ import {
     palette,
     prune,
     resample,
-    textureCompress, weld
+    simplify,
+    textureCompress,
+    weld
 } from '@gltf-transform/functions';
+import {Loggers} from "3d-tiles-tools";
+import type {OptimizeOptions} from "../types.js";
+import {ALL_EXTENSIONS} from "@gltf-transform/extensions";
+import {NodeIO, type Transform} from "@gltf-transform/core";
+import {MeshoptDecoder, MeshoptEncoder, MeshoptSimplifier} from 'meshoptimizer';
 
 const logger = Loggers.get('optimizeGlb')
 
@@ -77,6 +79,18 @@ export async function optimizeGlb(glbBuffer: Buffer, opts: OptimizeOptions): Pro
                 if (opts.weld) {
                     logger.info('Merge equivalent vertices. Required when simplifying geometry.')
                     transforms.push(weld())
+
+                    if (opts.simplify) {
+                        logger.info('Simplify mesh geometry with meshoptimizer.')
+                        transforms.push(
+                            simplify({
+                                simplifier: MeshoptSimplifier,
+                                error: opts.simplifyError,
+                                ratio: opts.simplifyRatio,
+                                lockBorder: opts.simplifyLockBorder,
+                            }),
+                        );
+                    }
                 }
 
                 if (opts.resample) {

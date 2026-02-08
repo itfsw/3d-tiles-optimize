@@ -21,6 +21,10 @@ export interface OptimizeOptions extends Record<string, any> {
     meshopt: boolean;
     meshoptLevel: 'medium' | 'high';
     weld: boolean;
+    simplify: boolean;
+    simplifyError: number;
+    simplifyRatio: number;
+    simplifyLockBorder: boolean;
     palette: boolean;
     paletteMin: number;
     textureCompress: boolean;
