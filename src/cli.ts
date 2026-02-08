@@ -17,15 +17,15 @@ program.command('optimize', 'Optimize 3d-tiles by 3d-tiles-tools and glTF-Transf
         validator: Validator.BOOLEAN,
         default: false,
     })
-    .option('--dedup.enable <bool>', 'Enable Deduplicate accessors and textures.', {
+    .option('--dedup <bool>', 'Enable Deduplicate accessors and textures.', {
         validator: Validator.BOOLEAN,
         default: true,
     })
-    .option('--prune.enable <bool>', 'Enable Remove unreferenced properties from the file.', {
+    .option('--prune <bool>', 'Enable Remove unreferenced properties from the file.', {
         validator: Validator.BOOLEAN,
         default: true,
     })
-    .option('--instance.enable <bool>', 'Enable Create GPU instances from shared mesh references.', {
+    .option('--instance <bool>', 'Enable Create GPU instances from shared mesh references.', {
         validator: Validator.BOOLEAN,
         default: true,
     })
@@ -37,11 +37,11 @@ program.command('optimize', 'Optimize 3d-tiles by 3d-tiles-tools and glTF-Transf
         validator: Validator.BOOLEAN,
         default: true,
     })
-    .option('--draco.enable <bool>', 'Enable Compress geometry with Draco.', {
+    .option('--draco <bool>', 'Enable Compress geometry with Draco.', {
         validator: Validator.BOOLEAN,
         default: true,
     })
-    .option('--meshopt.enable <bool>', 'Enable Compress geometry and animation with Meshopt.', {
+    .option('--meshopt <bool>', 'Enable Compress geometry and animation with Meshopt.', {
         validator: Validator.BOOLEAN,
         default: false,
     })
@@ -49,7 +49,7 @@ program.command('optimize', 'Optimize 3d-tiles by 3d-tiles-tools and glTF-Transf
         validator: ['medium', 'high'],
         default: 'high',
     })
-    .option('--textureCompress.enable <bool>', 'Enable Textures Compress.', {
+    .option('--textureCompress <bool>', 'Enable Textures Compress.', {
         validator: Validator.BOOLEAN,
         default: true,
     })
@@ -57,7 +57,7 @@ program.command('optimize', 'Optimize 3d-tiles by 3d-tiles-tools and glTF-Transf
         validator: ['jpeg', 'png', 'webp', 'avif'],
         default: 'webp'
     })
-    .option('--resample.enable <bool>', 'Enable Resample animations, losslessly deduplicating keyframes.', {
+    .option('--resample <bool>', 'Enable Resample animations, losslessly deduplicating keyframes.', {
         validator: Validator.BOOLEAN,
         default: true,
     })

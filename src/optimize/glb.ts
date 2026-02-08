@@ -29,13 +29,13 @@ export async function optimizeGlb(glbBuffer: Buffer, options: OptimizeOptions): 
                 // 优化配置
                 const transforms: Transform[] = []
 
-                if (options.dedupEnable) {
+                if (options.dedup) {
                     logger.info('GLB Remove duplicate vertex or texture data, if any.')
                     transforms.push(dedup())
                 }
 
-                if (options.instanceEnable) {
-                    logger.info('Enable Create GPU instances from shared mesh references.')
+                if (options.instance) {
+                    logger.info('Create GPU instances from shared mesh references.')
                     transforms.push(instance({
                         min: options.instanceMin
                     }))
@@ -46,18 +46,18 @@ export async function optimizeGlb(glbBuffer: Buffer, options: OptimizeOptions): 
                     transforms.push(palette())
                 }
 
-                if (options.resampleEnable) {
+                if (options.resample) {
                     logger.info('GLB Losslessly resample animation frames.')
                     transforms.push(resample())
                 }
 
-                if (options.pruneEnable) {
+                if (options.prune) {
                     logger.info('GLB Remove unused nodes, textures, or other data.')
                     transforms.push(prune())
                 }
 
 
-                if (options.textureCompressEnable) {
+                if (options.textureCompress) {
                     logger.info('GLB Textures Compress.')
                     const resize = options.textureCompressResize === false ? undefined : options.textureCompressResize;
                     transforms.push(textureCompress({
@@ -67,11 +67,11 @@ export async function optimizeGlb(glbBuffer: Buffer, options: OptimizeOptions): 
                     }))
                 }
 
-                if (options.dracoEnable) {
+                if (options.draco) {
                     logger.info('GLB Compress mesh geometry with Draco.')
                     transforms.push(draco())
-                } else if (options.meshoptEnable) {
-                    logger.info('Enable Compress geometry and animation with Meshopt.')
+                } else if (options.meshopt) {
+                    logger.info('Compress geometry and animation with Meshopt.')
                     transforms.push(meshopt({
                         encoder: MeshoptEncoder,
                         level: options.meshoptLevel

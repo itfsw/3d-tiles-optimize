@@ -31,21 +31,21 @@ Using 3d-tiles-optimize as a command-line tool:
 | 🌓 PIPELINE                      |
 | `--combine`                      | Combines all external tilesets into a single tileset.                                                                                                                              | false   |
 | 📦 PACKAGE                       |
-| `--dedup.enable`                 | Enable Deduplicate accessors and textures.                                                                                                                                         | true    |
-| `--prune.enable`                 | Enable Remove unreferenced properties from the file.                                                                                                                               | true    |
+| `--dedup`                        | Deduplicate accessors and textures.                                                                                                                                                | true    |
+| `--prune`                        | Remove unreferenced properties from the file.                                                                                                                                      | true    |
 | 🌍 SCENE                         |
-| `--instance.enable`              | Enable Create GPU instances from shared mesh references.                                                                                                                           | true    |
+| `--instance`                     | Create GPU instances from shared mesh references.                                                                                                                                  | true    |
 | `--instance.min`                 | Number of instances required for instancing.                                                                                                                                       | 5       |
 | 🫖  GEOMETRY                     |
-| `--draco.enable`                 | Enable Compress geometry with Draco.                                                                                                                                               | true    |
-| `--meshopt.enable`               | Enable Compress geometry and animation with Meshopt.                                                                                                                               | false   |
+| `--draco`                        | Compress geometry with Draco.                                                                                                                                                      | true    |
+| `--meshopt`                      | Compress geometry and animation with Meshopt.                                                                                                                                      | false   |
 | `--meshopt.level`                | Meshopt compress level.                                                                                                                                                            | high    |
 | 🎨 MATERIAL                      |
 | `--palette`                      | Creates palette textures and merges materials.                                                                                                                                     | true    |
 | 🖼  TEXTURE                      |
-| `--textureCompress.enable`       | Enable Textures Compress.                                                                                                                                                          | true    |
+| `--textureCompress`              | Textures Compress.                                                                                                                                                                 | true    |
 | `--textureCompress.targetFormat` | Target image format. If specified, included textures in other formats will be converted.                                                                                           | webp    |
 | `--textureCompress.resize`       | Resizes textures to given maximum [width,height] \| false, preserving aspect ratio. Presets "nearest-pot", "ceil-pot", and "floor-pot" resize textures to power-of-two dimensions. | false   |
 | ⏯️ ANIMATION                     |
-| `--resample.enable`              | Enable Resample animations, losslessly deduplicating keyframes.                                                                                                                    | true    |
+| `--resample`                     | Resample animations, losslessly deduplicating keyframes.                                                                                                                           | true    |
 

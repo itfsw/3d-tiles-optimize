@@ -6,16 +6,16 @@ export type TextureCompressResize = [number, number] | 'nearest-pot' | 'ceil-pot
 export interface OptimizeOptions extends Record<string, any> {
     logLevel: 'trace' | 'debug' | 'info' | 'warn' | 'error' | 'fatal' | 'silent';
     combine: boolean;
-    resampleEnable: boolean;
-    pruneEnable: boolean;
-    instanceEnable: boolean;
+    resample: boolean;
+    prune: boolean;
+    instance: boolean;
     instanceMin: number;
-    dedupEnable: boolean;
-    dracoEnable: boolean;
-    meshoptEnable: boolean;
+    dedup: boolean;
+    draco: boolean;
+    meshopt: boolean;
     meshoptLevel: 'medium' | 'high';
     palette: boolean;
-    textureCompressEnable: boolean;
+    textureCompress: boolean;
     textureCompressTargetFormat: 'jpeg' | 'png' | 'webp' | 'avif';
     textureCompressResize: TextureCompressResize | false;
 }
