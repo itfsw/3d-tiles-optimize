@@ -23,7 +23,8 @@
     "@gltf-transform/extensions": "^4.3.0",
     "@gltf-transform/functions": "^4.3.0",
     "3d-tiles-tools": "^0.5.1",
-    "draco3dgltf": "^1.5.7"
+    "draco3dgltf": "^1.5.7",
+    "sharp": "^0.34.5"
   },
   "devDependencies": {
     "@types/draco3dgltf": "^1.4.3",

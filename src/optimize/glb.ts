@@ -1,7 +1,9 @@
+import sharp from "sharp";
 import draco3d from 'draco3dgltf';
-import {NodeIO, type Transform} from "@gltf-transform/core";
-import {ALL_EXTENSIONS} from "@gltf-transform/extensions";
 import {logger} from "./logger.js";
+import {ALL_EXTENSIONS} from "@gltf-transform/extensions";
+import {NodeIO, type Transform} from "@gltf-transform/core";
+import {dedup, draco, prune, resample, textureCompress} from '@gltf-transform/functions';
 
 /**
  * Given an input buffer containing a binary glTF asset, optimize it
@@ -23,6 +25,22 @@ export async function optimizeGlb(glbBuffer: Buffer, options: any): Promise<Buff
             io.readBinary(glbBuffer).then(document => {
                 // 优化配置
                 const transforms: Transform[] = []
+
+                // Losslessly resample animation frames.
+                transforms.push(resample())
+                // Remove unused nodes, textures, or other data.
+                transforms.push(prune())
+                // Remove duplicate vertex or texture data, if any.
+                transforms.push(dedup())
+                // Compress mesh geometry with Draco.
+                transforms.push(draco())
+                // Convert textures to WebP (Requires glTF Transform v3 and Node.js).
+                transforms.push(textureCompress({
+                    encoder: sharp,
+                    targetFormat: 'webp',
+                    resize: [1024, 2024],
+                }))
+
                 document.transform(...transforms).then(doc => {
                     // 数据输出
                     io.writeBinary(doc).then(data => {
