@@ -28,7 +28,6 @@ export interface OptimizeOptions extends Record<string, any> {
     palette: boolean;
     paletteMin: number;
     sparse: boolean;
-    textureCompress: boolean;
-    textureCompressTargetFormat: 'jpeg' | 'png' | 'webp' | 'avif';
+    textureCompress: 'ktx2' | 'webp' | 'avif' | 'auto' | false;
     textureCompressResize: TextureCompressResize | false;
 }

@@ -98,13 +98,9 @@ program.command('optimize', 'Optimize 3d-tiles by 3d-tiles-tools and glTF-Transf
         validator: ['medium', 'high'],
         default: 'high',
     })
-    .option('--textureCompress <bool>', 'Enable Textures Compress.', {
-        validator: Validator.BOOLEAN,
-        default: true,
-    })
-    .option('--textureCompress.targetFormat <format>', 'Target image format. If specified, included textures in other formats will be converted.', {
-        validator: ['jpeg', 'png', 'webp', 'avif'],
-        default: 'webp'
+    .option('--textureCompress <format>', 'Texture compression format. KTX2 optimizes VRAM usage and performance; AVIF and WebP optimize transmission size. Auto recompresses in original format.', {
+        validator: ['ktx2', 'webp', 'avif', 'auto', false],
+        default: 'auto',
     })
     .option('--resample <bool>', 'Resample animations, losslessly deduplicating keyframes', {
         validator: Validator.BOOLEAN,
