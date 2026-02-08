@@ -21,8 +21,9 @@ Using 3d-tiles-optimize as a command-line tool:
 ```
 
 ## Optimize Options
-| Option       | Description                                                                        | Default |
-|--------------|------------------------------------------------------------------------------------|---------|
-| `--logLevel` | The log level. Valid values are trace, debug, info, warn, error, fatal, and silent | warn    |
-| `--combine`  | Combines all external tilesets into a single tileset.                              | false   |
+| Option              | Description                                                                        | Default |
+|---------------------|------------------------------------------------------------------------------------|---------|
+| `--logLevel`        | The log level. Valid values are trace, debug, info, warn, error, fatal, and silent | warn    |
+| `--combine`         | Combines all external tilesets into a single tileset.                              | false   |
+| `--resample.enable` | Enable Losslessly resample animation frames.                                       | true    |
 

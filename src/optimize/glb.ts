@@ -27,7 +27,9 @@ export async function optimizeGlb(glbBuffer: Buffer, options: OptimizeOptions): 
                 const transforms: Transform[] = []
 
                 // Losslessly resample animation frames.
-                transforms.push(resample())
+                if (options.resampleEnable) {
+                    transforms.push(resample())
+                }
                 // Remove unused nodes, textures, or other data.
                 transforms.push(prune())
                 // Remove duplicate vertex or texture data, if any.

@@ -3,5 +3,6 @@
  */
 export interface OptimizeOptions extends Record<string, any> {
     logLevel: 'trace' | 'debug' | 'info' | 'warn' | 'error' | 'fatal' | 'silent',
-    combine: boolean
+    combine: boolean,
+    resampleEnable: boolean
 }

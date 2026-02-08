@@ -17,6 +17,10 @@ program.command('optimize', 'Optimize 3d-tiles by 3d-tiles-tools and glTF-Transf
         validator: Validator.BOOLEAN,
         default: false,
     })
+    .option('--resample.enable <resample.enable>', 'Enable Losslessly resample animation frames.', {
+        validator: Validator.BOOLEAN,
+        default: true,
+    })
     // action
     .action(async ({args, options}) => {
         const opts = options as OptimizeOptions
