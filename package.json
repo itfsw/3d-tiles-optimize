@@ -1,6 +1,6 @@
 {
   "name": "3d-tiles-optimize",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Optimize 3d-tiles by 3d-tiles-tools with glTF-Transform",
   "keywords": ["3d-tiles", "3d-tiles-tools", "glTF-Transform", "optimize"],
   "license": "Apache-2.0",
