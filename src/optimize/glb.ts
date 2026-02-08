@@ -155,14 +155,14 @@ async function createTransforms(opts: OptimizeOptions) {
                 level: 4,
                 rdo: true,
                 rdoLambda: 4,
-                limitInputPixels: opts.limitInputPixels as boolean,
+                limitInputPixels: opts.limitInputPixels,
             }),
             toktx({
                 encoder,
                 resize: resize,
                 mode: Mode.ETC1S,
                 quality: 255,
-                limitInputPixels: opts.limitInputPixels as boolean,
+                limitInputPixels: opts.limitInputPixels,
             }),
         )
     } else if (opts.textureCompress !== false) {
@@ -172,7 +172,7 @@ async function createTransforms(opts: OptimizeOptions) {
                 encoder,
                 resize: resize,
                 targetFormat: opts.textureCompress === 'auto' ? undefined : opts.textureCompress,
-                limitInputPixels: opts.limitInputPixels as boolean,
+                limitInputPixels: opts.limitInputPixels,
             }),
         )
     }

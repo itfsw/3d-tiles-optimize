@@ -141,4 +141,10 @@ program.command('optimize', 'Optimize 3d-tiles by 3d-tiles-tools and glTF-Transf
         return optimize(args.input as string, args.output as string, opts);
     });
 
+program.option('--limit-input-pixels', 'Attempts to avoid processing very high resolution images, where memory or other limits may be exceeded. (EXPERIMENTAL)', {
+    validator: Validator.BOOLEAN,
+    default: true,
+    hidden: true,
+});
+
 export {Validator, program};

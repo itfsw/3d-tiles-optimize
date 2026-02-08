@@ -30,4 +30,5 @@ export interface OptimizeOptions extends Record<string, any> {
     sparse: boolean;
     textureCompress: 'ktx2' | 'webp' | 'avif' | 'auto' | false;
     textureCompressResize: TextureCompressResize | false;
+    limitInputPixels: boolean;
 }
