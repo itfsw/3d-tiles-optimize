@@ -1,10 +1,12 @@
 import sharp from "sharp";
 import draco3d from 'draco3dgltf';
-import {logger} from "./logger.js";
+import type {OptimizeOptions} from "../types.js";
 import {ALL_EXTENSIONS} from "@gltf-transform/extensions";
 import {NodeIO, type Transform} from "@gltf-transform/core";
 import {dedup, draco, prune, resample, textureCompress} from '@gltf-transform/functions';
-import type {OptimizeOptions} from "../types.js";
+import {Loggers} from "3d-tiles-tools";
+
+const logger = Loggers.get('optimizeGlb')
 
 /**
  * Given an input buffer containing a binary glTF asset, optimize it
@@ -28,22 +30,27 @@ export async function optimizeGlb(glbBuffer: Buffer, options: OptimizeOptions): 
 
                 // Losslessly resample animation frames.
                 if (options.resampleEnable) {
+                    logger.info('GLB Losslessly resample animation frames.')
                     transforms.push(resample())
                 }
                 // Remove unused nodes, textures, or other data.
                 if (options.pruneEnable) {
+                    logger.info('GLB Remove unused nodes, textures, or other data.')
                     transforms.push(prune())
                 }
                 // Remove duplicate vertex or texture data, if any.
                 if (options.dedupEnable) {
+                    logger.info('GLB Remove duplicate vertex or texture data, if any.')
                     transforms.push(dedup())
                 }
                 // Compress mesh geometry with Draco.
                 if (options.dracoEnable) {
+                    logger.info('GLB Compress mesh geometry with Draco.')
                     transforms.push(draco())
                 }
                 // Textures Compress.
-                if (options.textureCompress) {
+                if (options.textureCompressEnable) {
+                    logger.info('GLB Textures Compress.')
                     const resize = options.textureCompressResize === false ? undefined : options.textureCompressResize;
                     transforms.push(textureCompress({
                         encoder: sharp,
