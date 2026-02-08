@@ -17,15 +17,15 @@ import {
 } from '@gltf-transform/functions';
 import micromatch from 'micromatch';
 import {Loggers} from "3d-tiles-tools";
-import {Mode, toktx} from "@gltf-transform/cli";
 import type {OptimizeOptions} from "../types.js";
+import {Mode, toktx} from "../transforms/index.js";
 import {MICROMATCH_OPTIONS} from "../utils/match.js";
 import {ALL_EXTENSIONS} from "@gltf-transform/extensions";
 import {NodeIO, type Transform} from "@gltf-transform/core";
 import {MeshoptDecoder, MeshoptEncoder, MeshoptSimplifier} from 'meshoptimizer';
 import {ready as resampleReady, resample as resampleWASM} from 'keyframe-resample';
 
-const logger = Loggers.get('optimizeGlb')
+const logger = Loggers.get('optimize-glb')
 
 /**
  * Given an input buffer containing a binary glTF asset, optimize it
