@@ -105,7 +105,7 @@ program.command('optimize', 'Optimize 3d-tiles by 3d-tiles-tools and glTF-Transf
     })
     .option('--textureCompress <format>', 'Texture compression format. KTX2 optimizes VRAM usage and performance; AVIF and WebP optimize transmission size. Auto recompresses in original format.', {
         validator: ['ktx2', 'webp', 'avif', 'auto', false],
-        default: 'auto',
+        default: 'webp',
     })
     .option('--resample <bool>', 'Resample animations, losslessly deduplicating keyframes', {
         validator: Validator.BOOLEAN,

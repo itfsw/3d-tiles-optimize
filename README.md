@@ -56,7 +56,7 @@ Using 3d-tiles-optimize as a command-line tool:
 | `--join.meshes`            | Join distinct meshes and nodes. Requires `--join`.                                                                                                                                 | true    |
 | `--join.named`             | Join named meshes and nodes. Requires `--join`.                                                                                                                                    | true    |
 | 🖼  TEXTURE                |
-| `--textureCompress`        | Texture compression format. KTX2 optimizes VRAM usage and performance; AVIF and WebP optimize transmission size. Auto recompresses in original format.                             | true    |
+| `--textureCompress`        | Texture compression format. KTX2 optimizes VRAM usage and performance; AVIF and WebP optimize transmission size. Auto recompresses in original format.                             | webp    |
 | `--textureCompress.resize` | Resizes textures to given maximum [width,height] \| false, preserving aspect ratio. Presets "nearest-pot", "ceil-pot", and "floor-pot" resize textures to power-of-two dimensions. | false   |
 | ⏯️ ANIMATION               |
 | `--resample`               | Resample animations, losslessly deduplicating keyframes                                                                                                                            | true    |
